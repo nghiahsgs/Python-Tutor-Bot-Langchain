@@ -1,0 +1,49 @@
+Python là một ngôn ngữ lập trình bậc cao, dễ đọc và linh hoạt.
+
+KIỂU DỮ LIỆU CƠ BẢN:
+1. Numbers: int, float, complex
+- int: số nguyên (1, -5, 1000)
+- float: số thực (3.14, -0.001, 2.0)
+- complex: số phức (3+4j)
+
+2. String: chuỗi ký tự
+- Được đặt trong dấu nháy đơn hoặc kép
+- Ví dụ: "Hello", 'Python'
+- Có thể nối chuỗi: "Hello" + " World"
+
+3. List:
+- Danh sách các phần tử, có thể chứa nhiều kiểu dữ liệu
+- Được đặt trong dấu []
+- Có thể thay đổi (mutable)
+- Ví dụ: [1, "hello", 3.14]
+
+4. Tuple:
+- Tương tự list nhưng không thể thay đổi (immutable)
+- Được đặt trong dấu ()
+- Ví dụ: (1, "hello", 3.14)
+
+5. Dictionary:
+- Lưu trữ dữ liệu dạng key-value
+- Được đặt trong dấu {}
+- Ví dụ: {"name": "Python", "version": 3.9}
+
+CÚ PHÁP CƠ BẢN:
+1. Biến:
+- Không cần khai báo kiểu
+- Tên biến phải bắt đầu bằng chữ cái hoặc _
+- Phân biệt chữ hoa/thường
+
+2. Điều kiện:
+if điều_kiện:
+    # code
+elif điều_kiện_khác:
+    # code
+else:
+    # code
+
+3. Vòng lặp:
+for item in sequence:
+    # code
+
+while điều_kiện:
+    # code 
