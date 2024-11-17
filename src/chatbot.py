@@ -1,6 +1,7 @@
 from langchain_openai import ChatOpenAI
 from langchain.chains import ConversationalRetrievalChain
 from langchain.memory import ConversationBufferMemory
+from langchain.memory import ConversationBufferWindowMemory
 
 class PythonTutor:
     def __init__(self, vectorstore):
@@ -10,10 +11,17 @@ class PythonTutor:
         )
         
         # Cập nhật memory với output_key
-        self.memory = ConversationBufferMemory(
+        # self.memory = ConversationBufferMemory(
+        #     memory_key="chat_history",
+        #     output_key="answer",  # Thêm dòng này
+        #     return_messages=True,
+        # )
+        # Sử dụng ConversationBufferWindowMemory thay vì ConversationBufferMemory
+        self.memory = ConversationBufferWindowMemory(
             memory_key="chat_history",
-            output_key="answer",  # Thêm dòng này
-            return_messages=True
+            output_key="answer",
+            return_messages=True,
+            k=3  # Chỉ lưu 3 cặp hội thoại gần nhất
         )
         
         self.chain = ConversationalRetrievalChain.from_llm(
