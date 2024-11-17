@@ -1,0 +1,108 @@
+
+
+Đây là câu lệnh để tạo file documentation cho EasyDataFlow framework:
+
+```bash
+cat > data/framework_docs.txt << 'EOL'
+# EasyDataFlow Framework Documentation
+
+EasyDataFlow là một framework đơn giản nhưng mạnh mẽ cho việc xử lý và biến đổi dữ liệu trong Python. Framework cung cấp hai class chính: DataTransformer và DataValidator.
+
+## DataTransformer
+DataTransformer cho phép bạn xây dựng một pipeline xử lý dữ liệu linh hoạt.
+
+### Cách sử dụng cơ bản:
+```python
+from easy_dataflow import DataTransformer
+
+# Khởi tạo transformer
+transformer = DataTransformer(config={
+    "mode": "basic",
+    "log_level": "info"
+})
+
+# Định nghĩa các bước xử lý
+def uppercase_step(data):
+    return data.upper()
+
+def remove_spaces_step(data):
+    return data.replace(" ", "")
+
+# Thêm các bước vào pipeline
+transformer.add_step(uppercase_step)
+transformer.add_step(remove_spaces_step)
+
+# Xử lý dữ liệu
+result = transformer.process("Hello World")
+# Kết quả: "HELLOWORLD"
+```
+
+## DataValidator
+DataValidator giúp kiểm tra tính hợp lệ của dữ liệu theo các rules tùy chỉnh.
+
+### Cách sử dụng cơ bản:
+```python
+from easy_dataflow import DataValidator
+
+# Khởi tạo validator
+validator = DataValidator()
+
+# Định nghĩa các rules
+def check_length(data, min_length=5):
+    return len(data) >= min_length
+
+def check_uppercase(data):
+    return any(c.isupper() for c in data)
+
+# Thêm rules vào validator
+validator.add_rule(lambda x: check_length(x, 5))
+validator.add_rule(check_uppercase)
+
+# Kiểm tra dữ liệu
+is_valid = validator.validate("Hello")  # Returns True
+is_valid = validator.validate("hi")     # Returns False
+```
+
+## Ví dụ kết hợp Transformer và Validator:
+```python
+# Tạo pipeline xử lý dữ liệu với validation
+transformer = DataTransformer()
+validator = DataValidator()
+
+# Thêm rules cho validator
+validator.add_rule(lambda x: len(x) >= 3)
+
+# Thêm các bước xử lý
+transformer.add_step(lambda x: x.strip())
+transformer.add_step(lambda x: x.upper())
+
+# Xử lý dữ liệu
+input_data = "  hello world  "
+if validator.validate(input_data):
+    result = transformer.process(input_data)
+    print(result)  # Output: "HELLO WORLD"
+else:
+    print("Dữ liệu không hợp lệ!")
+```
+
+## Lưu ý quan trọng:
+1. Mỗi step trong DataTransformer phải là một hàm nhận một tham số và trả về dữ liệu đã xử lý
+2. Các rules trong DataValidator phải trả về True/False
+3. Config trong DataTransformer là optional và có thể được sử dụng để cấu hình thêm
+
+## Best Practices:
+1. Luôn kiểm tra dữ liệu trước khi xử lý
+2. Chia nhỏ các bước xử lý để dễ maintain
+3. Sử dụng config để làm cho code linh hoạt hơn
+EOL
+```
+
+Sau khi chạy lệnh này, file `data/framework_docs.txt` sẽ được tạo với đầy đủ nội dung documentation. Lưu ý:
+1. Đảm bảo thư mục `data` đã tồn tại
+2. Nếu file đã tồn tại, nó sẽ bị ghi đè
+3. Dấu `EOL` ở cuối là delimiter để kết thúc nội dung
+
+Bạn có thể kiểm tra nội dung file bằng lệnh:
+```bash
+cat data/framework_docs.txt
+```

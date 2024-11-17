@@ -13,7 +13,8 @@ def create_vectorstore():
         raise ValueError("Vui lòng thiết lập OPENAI_API_KEY")
 
     # Load tài liệu
-    loader = TextLoader("data/python_basics.txt")
+    # loader = TextLoader("data/python_basics.txt")
+    loader = TextLoader("data/framework_docs.txt")
     documents = loader.load()
     
     # Chia nhỏ text
