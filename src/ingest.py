@@ -3,6 +3,9 @@ from langchain.text_splitter import CharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import FAISS
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def create_vectorstore():
     # Kiểm tra OPENAI_API_KEY
