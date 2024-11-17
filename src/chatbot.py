@@ -1,4 +1,4 @@
-from langchain_community.chat_models import ChatOpenAI  # Updated import
+from langchain_openai import ChatOpenAI
 from langchain.chains import ConversationalRetrievalChain
 from langchain.memory import ConversationBufferMemory
 
@@ -8,8 +8,11 @@ class PythonTutor:
             temperature=0.7,
             model_name="gpt-3.5-turbo"
         )
+        
+        # Cập nhật memory với output_key
         self.memory = ConversationBufferMemory(
             memory_key="chat_history",
+            output_key="answer",  # Thêm dòng này
             return_messages=True
         )
         
@@ -19,12 +22,20 @@ class PythonTutor:
                 search_kwargs={"k": 3}
             ),
             memory=self.memory,
-            verbose=True
+            verbose=True,
+            return_source_documents=True
         )
     
     def ask(self, question: str) -> str:
         try:
-            response = self.chain({"question": question})
+            response = self.chain.invoke({"question": question})
+            
+            # In ra các documents được sử dụng
+            print("\nDocuments used for context:")
+            for doc in response["source_documents"]:
+                print("-" * 40)
+                print(doc.page_content)
+            
             return response["answer"]
         except Exception as e:
-            return f"Xin lỗi, có lỗi xảy ra: {str(e)}" 
+            return f"Xin lỗi, có lỗi xảy ra: {str(e)}"
