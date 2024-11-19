@@ -1,12 +1,12 @@
 
 
-Đây là câu lệnh để tạo file documentation cho EasyDataFlow framework:
+Đây là câu lệnh để tạo file documentation cho AndieEasyDataFlow framework:
 
 ```bash
 cat > data/framework_docs.txt << 'EOL'
-# EasyDataFlow Framework Documentation
+# AndieEasyDataFlow Framework Documentation
 
-EasyDataFlow là một framework đơn giản nhưng mạnh mẽ cho việc xử lý và biến đổi dữ liệu trong Python. Framework cung cấp hai class chính: DataTransformer và DataValidator.
+AndieEasyDataFlow là một framework đơn giản nhưng mạnh mẽ cho việc xử lý và biến đổi dữ liệu trong Python. Framework cung cấp hai class chính: DataTransformer và DataValidator.
 
 ## DataTransformer
 DataTransformer cho phép bạn xây dựng một pipeline xử lý dữ liệu linh hoạt.
