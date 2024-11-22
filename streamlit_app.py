@@ -12,7 +12,7 @@ def initialize_chat_history():
         st.session_state.messages = []
 
 def main():
-    st.title("CMC Chatbot 🤖")
+    st.title("Andie's Chatbot 🤖")
     
     # Khởi tạo chatbot và lịch sử chat
     initialize_chatbot()
@@ -24,7 +24,7 @@ def main():
             st.markdown(message["content"])
     
     # Chat input
-    if prompt := st.chat_input("Hãy đặt câu hỏi của bạn về CMC"):
+    if prompt := st.chat_input("Hãy đặt câu hỏi của bạn"):
         # Hiển thị câu hỏi của user
         with st.chat_message("user"):
             st.markdown(prompt)
