@@ -46,6 +46,9 @@ def create_index_from_pdfs(directory_path: str):
         required_exts=[".pdf"]
     )
     documents = reader.load_data()
+    print(f"Đã đọc được {len(documents)} file PDF")
+    for doc in documents:
+        print(f"- {doc.doc_id}: {len(doc.text)} ký tự")
     
     # Parse documents thành nodes
     parser = SimpleNodeParser.from_defaults(
