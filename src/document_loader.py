@@ -43,7 +43,8 @@ def create_index_from_pdfs(directory_path: str):
     reader = SimpleDirectoryReader(
         input_dir=directory_path,
         filename_as_id=True,
-        required_exts=[".pdf"]
+        required_exts=[".pdf"],
+        encoding='utf-8'
     )
     documents = reader.load_data()
     print(f"Đã đọc được {len(documents)} file PDF")
@@ -61,7 +62,8 @@ def create_index_from_pdfs(directory_path: str):
     llm = OpenAI(temperature=0.7, model="gpt-3.5-turbo")
     index = VectorStoreIndex(
         nodes,
-        llm=llm
+        llm=llm,
+        encoding="utf-8"  # Thêm dòng này
     )
     
     return index
